@@ -1,0 +1,28 @@
+extends layout.pug
+
+block append head
+  title='Short URLs'
+
+block content
+  h1 Short URLs
+  table
+    thead
+      tr
+        th Original URL
+        th Short URL
+        th Date Created
+        th Visits
+    tbody
+      each url in urls
+        tr
+          td 
+            a(href=`${url.url}` target="_blank") #{url.url}
+          td
+            a(href=`${url.shortUrl}` target="_blank" onclick="javascript:reloadPage()") #{url.shortUrl}
+          td #{url.dateCreated}
+          td #{url.visits}
+
+  script.
+    function reloadPage() {
+      setTimeout(() => location.reload(), 500);
+    }
